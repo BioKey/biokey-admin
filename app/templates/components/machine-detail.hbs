@@ -1,5 +1,10 @@
 {{#link-to 'machines'}}All Machines{{/link-to}}
 {{machine.mac}}
-<br/>
-<h2>Typing Profiles</h2>
-{{typing-profile-list typingProfiles=typingProfiles}}
+<div class="card">
+	{{#link-to 'profiles' class="card-header clickable-row" tagName="h5"}}Typing Profiles{{/link-to}}
+	<div class="card-body">
+		<p class="card-text">
+			{{typing-profile-list typingProfiles=typingProfiles}}
+		</p>
+	</div>
+</div>

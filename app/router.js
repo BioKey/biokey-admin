@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('users', function() {
     this.route('user', {path: ':user_id'});
     this.route('list', {path: ''});
+    this.route('new');
   });
   this.route('machines', function() {
     this.route('list', {path: ''});

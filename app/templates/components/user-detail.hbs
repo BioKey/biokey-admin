@@ -1,5 +1,76 @@
-{{#link-to 'users'}}All Users{{/link-to}}
-{{user.email}}
-<br/>
-<h2>Typing Profiles</h2>
-{{typing-profile-list typingProfiles=typingProfiles}}
+<ul class="nav justify-content-end">
+	<li class="nav-item">
+		{{#link-to 'users' class="nav-link"}}&larr; All Users{{/link-to}}
+	</li>
+	<li class="nav-item">
+		<a class="nav-link{{if user.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
+	</li>
+	<li class="nav-item">
+		{{#if user.hasDirtyAttributes}}
+		<a class="nav-link" {{action "undo"}} href="#">Undo</a>
+		{{else}}
+		<a class="nav-link" {{action "delete"}} href="#">Delete</a>
+		{{/if}}
+	</li>
+	{{#if user.isNew}}
+	<a class="btn btn-outline-danger" {{action "cancel"}} href="#">Cancel</a>
+	{{else}}
+	<li class="nav-item">
+		{{#link-to 'users.new' class="nav-link"}}New{{/link-to}}
+	</li>
+	{{/if}}
+
+</ul>
+
+{{error-container errors=errors}}
+
+<h1>User: {{user.name}}</h1>
+<form>
+
+	<div class="form-group">
+		<label for="nameField">Name</label>
+		{{input type="text" class="form-control" id="nameField" placeholder="Enter name" value=user.name }}
+	</div>
+
+	<div class="form-group">
+		<label for="emailField">Email</label>
+		{{input type="email" class="form-control" id="emailField" placeholder="Enter email" value=user.email }}
+	</div>
+
+	{{#if user.isNew}}
+	<div class="form-group">
+		<label for="passwordField">Password</label>
+		{{input type="password" class="form-control" id="passwordField" placeholder="Enter password" value=user.password }}
+	</div>
+	{{/if}}
+
+	<div class="form-group">
+		<label for="phoneField">Phone Number</label>
+		{{input type="tel" class="form-control" id="phoneField" placeholder="Enter phone" value=user.phoneNumber }}
+	</div>
+
+	<div class="form-group">
+		<label for="orgField">{{#link-to 'organizations.organization' user.organization.id}}Organization &rarr;{{/link-to}}</label>
+		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=user.organization.name }}
+	</div>
+
+	<div class="form-check">
+		{{input type="checkbox" class="form-check-input " id="adminField" checked=user.isAdmin }}
+		<label class="form-check-label" for="adminField">
+			Administrator
+		</label>
+	</div>
+
+</form>
+
+{{#if typingProfiles}}
+<hr/>
+<div class="card">
+	{{#link-to 'profiles' class="card-header clickable-row" tagName="h5"}}Typing Profiles{{/link-to}}
+	<div class="card-body">
+		<p class="card-text">
+			{{typing-profile-list typingProfiles=typingProfiles}}
+		</p>
+	</div>
+</div>
+{{/if}}

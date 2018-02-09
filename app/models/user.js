@@ -5,5 +5,6 @@ export default DS.Model.extend({
   email: DS.attr(),
   isAdmin: DS.attr(),
   phoneNumber: DS.attr(),
-  organization: DS.belongsTo('organization')
+  organization: DS.belongsTo('organization'),
+  password: DS.attr()
 });

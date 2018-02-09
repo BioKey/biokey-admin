@@ -1,0 +1,5 @@
+{{#each errors as |err index|}}
+{{#bs-alert type="danger" onDismissed=(action 'dismiss' index)}}
+	<strong>{{err.name}}:</strong> {{err.message}}
+{{/bs-alert}}
+{{/each}}

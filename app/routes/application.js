@@ -3,6 +3,7 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   currentUser: Ember.inject.service(),
+  spinner: Ember.inject.service('spinner'),
 
   beforeModel() {
     return this._loadCurrentUser();
