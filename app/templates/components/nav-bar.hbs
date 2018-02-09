@@ -23,7 +23,7 @@
     </ul>
     <ul class="navbar-nav navbar-right">
       {{#if session.isAuthenticated}}
-      <a href="#" class="nav-item nav-link disabled">Hi, {{currentUser.user.name}}</a>
+      {{#link-to 'me' class='nav-item nav-link'}}{{currentUser.user.name}}'s Profile{{/link-to}}
       <a href="#" class="nav-item nav-link" {{action 'logout'}}>Logout</a>
       {{else}}
       {{#link-to 'login' class='nav-item nav-link'}}Login{{/link-to}}
