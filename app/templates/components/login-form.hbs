@@ -3,14 +3,11 @@
 		<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 		<label for="inputEmail" class="sr-only">Email address</label>
-		{{input id='inputEmail' type="email" placeholder='Email Address' value=identification class="form-control" required="" autofocus=""}}
+		{{input id='inputEmail' type="email" placeholder='Email Address' value=email class="form-control" required="" autofocus=""}}
 		<label for="inputPassword" class="sr-only">Password</label>
 		{{input id='inputPassword' placeholder='Password' type='password' value=password class="form-control"}}
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		<p class="mt-5 mb-3 text-muted">New User? {{#link-to 'register'}}Register{{/link-to}}</p>
 	</form>
-	{{#if errorMessage}}
-	<div class="alert alert-danger">
-		<strong>Login failed:</strong> {{errorMessage}}
-	</div>
-	{{/if}}
+	{{error-container errors=errors}}
 </div>

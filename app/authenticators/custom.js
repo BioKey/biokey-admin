@@ -4,7 +4,7 @@ import Base from 'ember-simple-auth/authenticators/base';
 import config from '../config/environment';
 
 export default Base.extend({
-  tokenEndpoint: `${config.host}/api/auth/login`,
+  authEndpoint: `${config.host}/api/auth/`,
   restore(data) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       if (!Ember.isEmpty(data.token)) {
@@ -18,12 +18,9 @@ export default Base.extend({
   authenticate(options) {
     return new Ember.RSVP.Promise((resolve, reject) => {
       Ember.$.ajax({
-        url: this.tokenEndpoint,
+        url: this.authEndpoint + options.method,
         type: 'POST',
-        data: JSON.stringify({
-          email: options.identification,
-          password: options.password
-        }),
+        data: JSON.stringify(options.credentials),
         contentType: 'application/json;charset=utf-8',
         dataType: 'json'
       }).then(function(response) {
