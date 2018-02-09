@@ -22,6 +22,10 @@ Router.map(function() {
     this.route('list', {path: ''});
   });
   this.route('me');
+  this.route('profiles', function() {
+    this.route('list', {path: ''});
+    this.route('profile', {path: ':profile_id'});
+  });
 });
 
 export default Router;

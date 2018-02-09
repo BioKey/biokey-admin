@@ -1,0 +1,24 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">User</th>
+			<th scope="col">Machine</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each typingProfiles as |tp|}}
+		{{#link-to 'profiles.profile' tp.id tagName="tr" class="clickable-row"}}
+		<th scope="row">
+			{{#link-to 'users.user' tp.user}}
+			{{tp.user.name}}
+			{{/link-to}}
+		</th>
+		<td>
+			{{#link-to 'machines.machine' tp.machine}}
+			{{tp.machine.mac}}
+			{{/link-to}}
+		</td>
+		{{/link-to}}
+		{{/each}}
+	</tbody>
+</table>
