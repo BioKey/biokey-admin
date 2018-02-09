@@ -1,0 +1,9 @@
+{{nav-bar}}
+<div class="container">
+	{{#if errorMessage}}
+	<div class="alert alert-danger">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+	{{/if}}
+	{{outlet}}
+</div>

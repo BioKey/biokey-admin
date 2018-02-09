@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'biokey-admin',
     environment: environment,
     rootURL: '/',
+    host: 'http://localhost:3000',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -30,6 +31,14 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
+
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:custom',
+    crossOriginWhitelist: [ENV.host],
+    routeAfterAuthentication: 'index',
+    store: 'simple-auth-session-store:localStorage'
+  };
+
 
   if (environment === 'test') {
     // Testem prefers this...

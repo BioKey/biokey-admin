@@ -1,0 +1,20 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Max Users</th>
+			<th scope="col">Challenge Strategies</th>
+			<th scope="col">Threshold</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each orgs as |org|}}
+		{{#link-to 'organizations.organization' org.id tagName="tr" class="clickable-row"}}
+		<th scope="row">{{org.name}}</th>
+		<th scope="row">{{org.maxUsers}}</th>
+		<td>{{user.challengeStrategies}}</td>
+		<td>{{user.defaultThreshold}}</td>
+		{{/link-to}}
+		{{/each}}
+	</tbody>
+</table>

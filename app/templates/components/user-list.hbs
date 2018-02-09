@@ -1,0 +1,26 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">Name</th>
+			<th scope="col">Organization</th>
+			<th scope="col">Email</th>
+			<th scope="col">Phone Number</th>
+			<th scope="col">Administrator</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each users as |user|}}
+		{{#link-to 'users.user' user.id tagName="tr" class="clickable-row"}}
+		<th scope="row">{{user.name}}</th>
+		<td>
+			{{#link-to 'organizations.organization' user.organization}}
+			{{user.organization.name}}
+			{{/link-to}}
+		</td>
+		<td>{{user.email}}</td>
+		<td>{{user.phoneNumber}}</td>
+		<td>{{user.isAdmin}}</td>
+		{{/link-to}}
+		{{/each}}
+	</tbody>
+</table>

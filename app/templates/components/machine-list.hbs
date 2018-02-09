@@ -1,0 +1,22 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">MAC</th>
+			<th scope="col">Organization</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each machines as |machine|}}
+		{{#link-to 'machines.machine' machine.id tagName="tr" class="clickable-row"}}
+		<th scope="row">{{machine.mac}}</th>
+		<td>
+			{{#link-to 'organizations.organization' machine.organization}}
+			{{machine.organization.name}}
+			{{/link-to}}
+		</td>
+		<td>{{user.phoneNumber}}</td>
+		<td>{{user.isAdmin}}</td>
+		{{/link-to}}
+		{{/each}}
+	</tbody>
+</table>
