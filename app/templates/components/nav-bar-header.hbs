@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+	{{#link-to 'index' class="navbar-brand col-sm-3 col-md-2 mr-0"}}Biokey{{/link-to}}
+	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+	<ul class="navbar-nav px-3">
+		{{#if session.isAuthenticated}}
+		<li class="nav-item text-nowrap">
+			<a class="nav-link" href="#" {{action 'logout'}}>Sign out</a>
+		</li>
+		{{else}}
+		<li class="nav-item text-nowrap">
+			{{#link-to 'login' class="nav-link"}}Login{{/link-to}}
+		</li>
+		{{/if}}
+	</ul>
+</nav>

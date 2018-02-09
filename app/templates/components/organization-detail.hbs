@@ -1,5 +1,52 @@
-{{#link-to 'organizations'}}All Organizations{{/link-to}}
-{{org.name}}
-<br/>
-<h2>Users</h2>
-{{user-list users=users}}
+<ul class="nav justify-content-end">
+	<li class="nav-item">
+		<a href="#" onclick="window.history.back()" class="nav-link">&larr; Back</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link{{if org.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
+	</li>
+	<li class="nav-item">
+		{{#if org.hasDirtyAttributes}}
+		<a class="nav-link" {{action "undo"}} href="#">Undo</a>
+		{{else}}
+		<a class="nav-link" {{action "delete"}} href="#">Delete</a>
+		{{/if}}
+	</li>
+	{{#if org.isNew}}
+	<a class="btn btn-outline-danger" {{action "cancel"}} href="#">Cancel</a>
+	{{else}}
+	<li class="nav-item">
+		{{#link-to 'organizations.new' class="nav-link"}}New{{/link-to}}
+	</li>
+	{{/if}}
+
+</ul>
+
+{{error-container errors=errors}}
+
+<h1>Org: {{org.name}}</h1>
+<form>
+
+	<div class="form-group">
+		<label for="nameField">Name</label>
+		{{input type="text" class="form-control" id="nameField" placeholder="Enter name" value=org.name }}
+	</div>
+
+	<div class="form-group">
+		<label for="userField">Maxmium Number of Users</label>
+		{{input type="number" class="form-control" id="userField" placeholder="Enter number of users" value=org.maxUsers }}
+	</div>
+
+</form>
+
+{{#if users}}
+<hr/>
+<div class="card">
+	{{#link-to 'users' class="card-header clickable-row" tagName="h5"}}Users{{/link-to}}
+	<div class="card-body">
+		<p class="card-text">
+			{{user-list users=users}}
+		</p>
+	</div>
+</div>
+{{/if}}

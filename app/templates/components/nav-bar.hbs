@@ -1,11 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-  <a class="navbar-brand" href="#">BioKey</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-default" aria-controls="nav-default" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="nav-default">
-    <ul class="navbar-nav mr-auto">
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
       <li class="nav-item">
         {{#link-to 'index' class='nav-link'}}Home{{/link-to}}
       </li>
@@ -24,15 +19,6 @@
       </li>
       {{/if}}
     </ul>
-    <ul class="navbar-nav navbar-right">
-      {{#if session.isAuthenticated}}
-      {{#link-to 'me' class='nav-item nav-link'}}{{currentUser.user.name}}'s Profile{{/link-to}}
-      <a href="#" class="nav-item nav-link" {{action 'logout'}}>Logout</a>
-      {{else}}
-      {{#link-to 'login' class='nav-item nav-link'}}Login{{/link-to}}
-      <a class="nav-item nav-link disabled">or</a>
-      {{#link-to 'register' class='nav-item nav-link'}}Register{{/link-to}}
-      {{/if}}
-    </ul>
+
   </div>
 </nav>

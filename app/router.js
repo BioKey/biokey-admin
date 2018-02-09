@@ -22,6 +22,7 @@ Router.map(function() {
   this.route('organizations', function() {
     this.route('organization', {path: ':org_id'});
     this.route('list', {path: ''});
+    this.route('new');
   });
   this.route('me');
   this.route('profiles', function() {
