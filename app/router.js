@@ -17,6 +17,7 @@ Router.map(function() {
   this.route('machines', function() {
     this.route('list', {path: ''});
     this.route('machine', {path: ':machine_id'});
+    this.route('new');
   });
   this.route('organizations', function() {
     this.route('organization', {path: ':org_id'});

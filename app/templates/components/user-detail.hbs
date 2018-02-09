@@ -42,6 +42,10 @@
 		<label for="passwordField">Password</label>
 		{{input type="password" class="form-control" id="passwordField" placeholder="Enter password" value=user.password }}
 	</div>
+	{{else}}
+	<div class="form-group align-items-right">
+	<a class="text-right" {{action "changePassword"}} href="#">Change Password</a>
+	</div>
 	{{/if}}
 
 	<div class="form-group">
