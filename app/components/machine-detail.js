@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     this.get('machine').save()
     .catch(err => {
       if(err.errors) {
-        Ember.Logger.error(err)
+        Ember.Logger.error(err);
         this.get('errors').pushObjects(err.errors);
       }
     })
