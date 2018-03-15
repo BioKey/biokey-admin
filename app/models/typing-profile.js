@@ -5,6 +5,5 @@ export default DS.Model.extend({
   machine: DS.belongsTo('machine'),
   isLocked: DS.attr(),
   lastHeartbeat: DS.attr('date'),
-  challengeStrategies: DS.attr(),
-  threshold: DS.attr()
+  challengeStrategies: DS.attr()
 });
