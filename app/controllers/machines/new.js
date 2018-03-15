@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute('machines.machine', machineId);
     },
     cancel() {
-      this.transitionToRoute('users');
+      this.transitionToRoute('machines');
     }
   }
 });

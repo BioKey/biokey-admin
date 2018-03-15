@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   user: null,
   spinner: Ember.inject.service('spinner'),
   errors:  Ember.A([]),
+  currentUser: Ember.inject.service(),
 
   saveUser() {
     this.get('spinner').show('page-spinner');

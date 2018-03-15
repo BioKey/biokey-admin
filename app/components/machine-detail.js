@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   machine: null,
   spinner: Ember.inject.service('spinner'),
   errors:  Ember.A([]),
+  currentUser: Ember.inject.service(),
 
   saveMachine() {
     this.get('spinner').show('page-spinner');
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
         this.get('errors').pushObjects(err.errors);
       }
     })
-    .then(user => {
+    .then(machine => {
       this.get('spinner').hide('page-spinner');
       let machineId = this.get('machine').id;
       if (machineId && this.get('onSave')) this.get('onSave')(machineId);

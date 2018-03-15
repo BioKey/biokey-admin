@@ -2,9 +2,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model(params) {
-    return this.get('store').findRecord('typing-profile', params.profile_id);
+    return this.get('store').findRecord('activity', params.activity_id);
   },
   setupController(controller, model) {
-    controller.set('profile', model);
+    controller.set('activity', model);
   }
 });  

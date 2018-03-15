@@ -12,14 +12,6 @@
 		<a class="nav-link" {{action "delete"}} href="#">Delete</a>
 		{{/if}}
 	</li>
-	{{#if org.isNew}}
-	<a class="btn btn-outline-danger" {{action "cancel"}} href="#">Cancel</a>
-	{{else}}
-	<li class="nav-item">
-		{{#link-to 'organizations.new' class="nav-link"}}New{{/link-to}}
-	</li>
-	{{/if}}
-
 </ul>
 
 {{error-container errors=errors}}

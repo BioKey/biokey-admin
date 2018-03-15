@@ -7,6 +7,9 @@
 	</thead>
 	<tbody>
 		{{#each typingProfiles as |tp|}}
+		{{#if tp.user}}
+		{{#if tp.machine}}
+		{{#unless tp.isDeleted}}
 		{{#link-to 'profiles.profile' tp.id tagName="tr" class="clickable-row"}}
 		<th scope="row">
 			{{#link-to 'users.user' tp.user}}
@@ -19,6 +22,9 @@
 			{{/link-to}}
 		</td>
 		{{/link-to}}
+		{{/unless}}
+		{{/if}}
+		{{/if}}
 		{{/each}}
 	</tbody>
 </table>
