@@ -3,7 +3,8 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({  
   session: Ember.inject.service(),
-
+  queryParams: ['organization'],
+  organization: null,
   actions: {
     register: function() {
       var credentials = this.getProperties
