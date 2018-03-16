@@ -10,7 +10,6 @@ export default Ember.Component.extend({
 
   saveUser() {
     this.get('spinner').show('page-spinner');
-
     if (this.get('user.password').length < 8) {
       this.get('errors').pushObject({
         name: 'Invalid Password',
