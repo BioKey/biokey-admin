@@ -10,22 +10,24 @@ export default Ember.Component.extend({
 
   saveUser() {
     this.get('spinner').show('page-spinner');
-    if (this.get('user.password').length < 8) {
-      this.get('errors').pushObject({
-        name: 'Invalid Password',
-        message: 'Please enter a password 8 characters or longer'
-      });
-      this.get('spinner').hide('page-spinner');
-      return;
-    }
+    if (this.get('changingPassword')) {
+      if (this.get('user.password').length < 8) {
+        this.get('errors').pushObject({
+          name: 'Invalid Password',
+          message: 'Please enter a password 8 characters or longer'
+        });
+        this.get('spinner').hide('page-spinner');
+        return;
+      }
 
-    if (this.get('user.password') != this.get('confirmPassword')) {
-      this.get('errors').pushObject({
-        name: 'Passwords Do Not Match',
-        message: 'Please double check and try again'
-      });
-      this.get('spinner').hide('page-spinner');
-      return;
+      if (this.get('user.password') != this.get('confirmPassword')) {
+        this.get('errors').pushObject({
+          name: 'Passwords Do Not Match',
+          message: 'Please double check and try again'
+        });
+        this.get('spinner').hide('page-spinner');
+        return;
+      }
     }
 
     this.get('user').save()
