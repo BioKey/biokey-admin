@@ -4,12 +4,19 @@ export default Ember.Component.extend({
   typingProfile: null,
   selectedUser: null,
   selectedMachine: null,
+  selectedStrategies: null,
   spinner: Ember.inject.service('spinner'),
   currentUser: Ember.inject.service(),
-  errors:  Ember.A([]),
+  errors: Ember.A([]),
+
+  init() {
+    this._super(...arguments);
+    this.set('selectedStrategies', this.get('typingProfile.challengeStrategies'));
+  },
 
   saveProfile() {
     this.get('spinner').show('page-spinner');
+    this.set('typingProfile.challengeStrategies', this.get('selectedStrategies'));
     this.get('typingProfile').save()
     .catch(err => {
       if(err.errors) {
@@ -61,6 +68,18 @@ export default Ember.Component.extend({
     selectMachine(machine) {
       this.get('typingProfile').set('machine', machine);
       this.set('selectedMachine', machine);
+    },
+    createStrategy(strategy) {
+      if (!this.get('selectedStrategies').includes(strategy)) {
+        this.get('selectedStrategies').pushObject(strategy);
+      }
+    },
+    toggleLocked() {
+      let result = confirm("Are you sure you want to remotely change the status?");
+      if (result) {
+        this.toggleProperty('typingProfile.isLocked');
+        this.saveProfile();
+      }
     }
   }
 });

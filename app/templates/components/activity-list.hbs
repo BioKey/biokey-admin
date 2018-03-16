@@ -10,6 +10,8 @@
 	<tbody>
 		{{#each activities as |activity|}}
 		{{#if activity.typingProfile}}
+		{{#if activity.typingProfile.user}}
+		{{#if activity.typingProfile.machine}}
 		{{#if activity.activityType}}
 		{{#link-to 'activities.activity' activity.id tagName="tr" class="clickable-row"}}
 		<th scope="row">
@@ -25,6 +27,8 @@
 		<td>{{activity.activityType}}</td>
 		<td>{{activity.timestamp}}</td>
 		{{/link-to}}
+		{{/if}}
+		{{/if}}
 		{{/if}}
 		{{/if}}
 		{{/each}}

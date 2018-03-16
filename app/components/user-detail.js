@@ -66,6 +66,13 @@ export default Ember.Component.extend({
     },
     cancel() {
       this.get('onCancel')();
+    },
+    toggleAdmin() {
+      let result = confirm("Are you sure you want to change administrative privileges? Your organization will be orphaned without at least one administrator.");
+      if (result) {
+        this.toggleProperty('user.isAdmin');
+        this.saveUser();
+      }
     }
   }
 });

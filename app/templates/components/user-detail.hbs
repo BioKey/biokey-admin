@@ -1,6 +1,6 @@
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		<a href="#" onclick="window.history.back()" class="nav-link">&larr; Back</a>
+		{{#link-to 'users.list' class="nav-link"}}&larr; Back{{/link-to}}
 	</li>
 	<li class="nav-item">
 		<a class="nav-link{{if user.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
@@ -26,7 +26,6 @@
 
 <h1>User: {{user.name}}</h1>
 <form>
-
 	<div class="form-group">
 		<label for="nameField">Name</label>
 		{{input type="text" class="form-control" id="nameField" placeholder="Enter name" value=user.name }}
@@ -58,17 +57,20 @@
 		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=currentUser.user.organization.name }}
 	</div>
 
+	{{#if user.isNew}}
 	<div class="form-check">
 		{{input type="checkbox" class="form-check-input " id="adminField" checked=user.isAdmin }}
-		<label class="form-check-label" for="adminField">
-			Administrator
-		</label>
+		<label class="form-check-label" for="adminField">Create as Administrator</label>
 	</div>
-
+	{{else}}
+	<div class="form-group">
+		<button class="btn btn-primary" id="adminField" {{action "toggleAdmin"}}>{{#if user.isAdmin}}Remove Administrator Privileges{{else}}Promote to Administrator{{/if}}</button>
+	</div>
+	{{/if}}
 </form>
 
 {{#if typingProfiles}}
-<hr/>
+<br/>
 <div class="card">
 	{{#link-to 'profiles' class="card-header clickable-row" tagName="h5"}}Typing Profiles{{/link-to}}
 	<div class="card-body">
