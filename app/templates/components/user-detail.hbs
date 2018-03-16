@@ -54,8 +54,8 @@
 	</div>
 
 	<div class="form-group">
-		<label for="orgField">{{#link-to 'organizations.organization' user.organization.id}}Organization &rarr;{{/link-to}}</label>
-		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=user.organization.name }}
+		<label for="orgField">{{#link-to 'organizations.organization' currentUser.user.organization.id}}Organization &rarr;{{/link-to}}</label>
+		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=currentUser.user.organization.name }}
 	</div>
 
 	<div class="form-check">

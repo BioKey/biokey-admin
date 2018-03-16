@@ -10,6 +10,8 @@
 	</thead>
 	<tbody>
 		{{#each users as |user|}}
+		{{#if user.email}}
+		{{#if user.organization}}
 		{{#unless user.isNew}}
 		{{#unless user.isDeleted}}
 		{{#link-to 'users.user' user.id tagName="tr" class="clickable-row"}}
@@ -25,6 +27,8 @@
 		{{/link-to}}
 		{{/unless}}
 		{{/unless}}
+		{{/if}}
+		{{/if}}
 		{{/each}}
 	</tbody>
 </table>

@@ -7,6 +7,8 @@
 	</thead>
 	<tbody>
 		{{#each machines as |machine|}}
+		{{#if machine.mac}}
+		{{#if machine.organization}}
 		{{#unless machine.isNew}}
 		{{#unless machine.isDeleted}}
 		{{#link-to 'machines.machine' machine.id tagName="tr" class="clickable-row"}}
@@ -19,6 +21,8 @@
 		{{/link-to}}
 		{{/unless}}
 		{{/unless}}
+		{{/if}}
+		{{/if}}
 		{{/each}}
 	</tbody>
 </table>

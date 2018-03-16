@@ -12,7 +12,10 @@ export default Ember.Component.extend({
         method: 'register',
         credentials
       }).catch((err) => {
-        this.get('errors').pushObjects(err);
+        if (typeof err == 'string') {
+          let objectErr = {name: "Error", message: err};
+          this.get('errors').pushObject(objectErr);
+        } else this.get('errors').pushObjects(err);
       });
     }
   }

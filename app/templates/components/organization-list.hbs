@@ -7,14 +7,14 @@
 	</thead>
 	<tbody>
 		{{#each orgs as |org|}}
-		{{#unless org.isNew}}
+		{{#if org.name}}
 		{{#unless org.isDeleted}}
 		{{#link-to 'organizations.organization' org.id tagName="tr" class="clickable-row"}}
 		<th scope="row">{{org.name}}</th>
 		<th scope="row">{{org.maxUsers}}</th>
 		{{/link-to}}
 		{{/unless}}
-		{{/unless}}
+		{{/if}}
 		{{/each}}
 	</tbody>
 </table>

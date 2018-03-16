@@ -33,8 +33,8 @@
 	</div>
 
 	<div class="form-group">
-		<label for="orgField">{{#link-to 'organizations.organization' machine.organization.id}}Organization &rarr;{{/link-to}}</label>
-		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=machine.organization.name }}
+		<label for="orgField">{{#link-to 'organizations.organization' currentUser.user.organization.id}}Organization &rarr;{{/link-to}}</label>
+		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=currentUser.user.organization.name }}
 	</div>
 
 </form>

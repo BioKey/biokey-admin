@@ -1,0 +1,32 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">User</th>
+			<th scope="col">Machine</th>
+			<th scope="col">Activity Type</th>
+			<th scope="col">Timestamp</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each activities as |activity|}}
+		{{#if activity.typingProfile}}
+		{{#if activity.activityType}}
+		{{#link-to 'activities.activity' activity.id tagName="tr" class="clickable-row"}}
+		<th scope="row">
+			{{#link-to 'users.user' activity.typingProfile.user}}
+			{{activity.typingProfile.user.name}}
+			{{/link-to}}
+		</th>
+		<td>
+			{{#link-to 'machines.machine' activity.typingProfile.machine}}
+			{{activity.typingProfile.machine.mac}}
+			{{/link-to}}
+		</td>
+		<td>{{activity.activityType}}</td>
+		<td>{{activity.timestamp}}</td>
+		{{/link-to}}
+		{{/if}}
+		{{/if}}
+		{{/each}}
+	</tbody>
+</table>

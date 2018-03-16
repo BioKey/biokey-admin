@@ -5,18 +5,23 @@
         {{#link-to 'index' class='nav-link'}}Home{{/link-to}}
       </li>
       {{#if session.isAuthenticated}}
-      <li class="nav-item">
-        {{#link-to 'users' class='nav-link'}}Users{{/link-to}}
-      </li>
-      <li class="nav-item">
-        {{#link-to 'machines' class='nav-link'}}Machines{{/link-to}}
-      </li>
-      <li class="nav-item">
-        {{#link-to 'organizations' class='nav-link'}}Organizations{{/link-to}}
-      </li>
-      <li class="nav-item">
-        {{#link-to 'profiles' class='nav-link'}}Profiles{{/link-to}}
-      </li>
+      {{#if currentUser.user.isAdmin}}
+        <li class="nav-item">
+          {{#link-to 'users' class='nav-link'}}Users{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'machines' class='nav-link'}}Machines{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'organizations' class='nav-link'}}Organizations{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'profiles' class='nav-link'}}Profiles{{/link-to}}
+        </li>
+        <li class="nav-item">
+          {{#link-to 'activities' class='nav-link'}}Activities{{/link-to}}
+        </li>
+      {{/if}}
       {{/if}}
     </ul>
 
