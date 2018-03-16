@@ -16,7 +16,7 @@ export default Ember.Component.extend({
         name: 'Invalid Password',
         message: 'Please enter a password 8 characters or longer'
       });
-      //this.get('spinner').hide('page-spinner');
+      this.get('spinner').hide('page-spinner');
       return;
     }
 

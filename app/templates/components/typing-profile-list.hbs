@@ -3,11 +3,12 @@
 		<tr>
 			<th scope="col">User</th>
 			<th scope="col">Machine</th>
-			<th scope="col">Currently Locked</th>
+			<th scope="col"></th>
+			<th scope="col">Status</th>
 		</tr>
 	</thead>
 	<tbody>
-		{{#each typingProfiles as |tp|}}
+		{{#each typingProfilesWithStatus as |tp|}}
 		{{#if tp.user}}
 		{{#if tp.machine}}
 		{{#unless tp.isDeleted}}
@@ -22,7 +23,10 @@
 			{{tp.machine.mac}}
 			{{/link-to}}
 		</td>
-		<td>{{tp.isLocked}}</td>
+		<th scope="row">{{tp.isActive}}
+			{{#if tp.isActive}}{{fa-icon "circle"}}{{else}}{{fa-icon "circle-o"}}{{/if}}
+		</th>
+		<td>{{#if tp.isLocked}}{{fa-icon "lock"}}{{else}}{{fa-icon "unlock"}}{{/if}}</td>
 		{{/link-to}}
 		{{/unless}}
 		{{/if}}
@@ -30,3 +34,4 @@
 		{{/each}}
 	</tbody>
 </table>
+<p>{{fa-icon "circle"}} indicates that the user's typing profile is online.</p>
