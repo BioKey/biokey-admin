@@ -1,8 +1,5 @@
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		<a href="#" onclick="window.history.back()" class="nav-link">&larr; Back</a>
-	</li>
-	<li class="nav-item">
 		<a class="nav-link{{if org.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
 	</li>
 	<li class="nav-item">
@@ -16,9 +13,8 @@
 
 {{error-container errors=errors}}
 
-<h1>Org: {{org.name}}</h1>
+<h1>Welcome to {{org.name}}</h1>
 <form>
-
 	<div class="form-group">
 		<label for="nameField">Name</label>
 		{{input type="text" class="form-control" id="nameField" placeholder="Enter name" value=org.name }}
@@ -29,6 +25,13 @@
 		{{input type="number" class="form-control" id="userField" placeholder="Enter number of users" value=org.maxUsers }}
 	</div>
 
+	<div class="form-group">
+		<label for="strategiesField">Challenge Strategies</label>
+		{{#power-select-multiple-with-create options=org.defaultChallengeStrategies selected=selectedStrategies onchange=(action (mut selectedStrategies)) oncreate=(action "createStrategy") as |strategy|}}
+		{{strategy}}
+		{{/power-select-multiple-with-create}}
+		<label for="strategiesField">If the strategy you want isn't an option, feel free to add your own!</label>
+	</div>
 </form>
 
 {{#if users}}

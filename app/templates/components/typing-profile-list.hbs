@@ -3,6 +3,7 @@
 		<tr>
 			<th scope="col">User</th>
 			<th scope="col">Machine</th>
+			<th scope="col">Currently Locked</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -21,6 +22,7 @@
 			{{tp.machine.mac}}
 			{{/link-to}}
 		</td>
+		<td>{{tp.isLocked}}</td>
 		{{/link-to}}
 		{{/unless}}
 		{{/if}}

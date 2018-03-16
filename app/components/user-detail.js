@@ -5,9 +5,30 @@ export default Ember.Component.extend({
   spinner: Ember.inject.service('spinner'),
   errors:  Ember.A([]),
   currentUser: Ember.inject.service(),
+  changingPassword: false,
+  confirmPassword: '',
 
   saveUser() {
     this.get('spinner').show('page-spinner');
+
+    if (this.get('user.password').length < 8) {
+      this.get('errors').pushObject({
+        name: 'Invalid Password',
+        message: 'Please enter a password 8 characters or longer'
+      });
+      //this.get('spinner').hide('page-spinner');
+      return;
+    }
+
+    if (this.get('user.password') != this.get('confirmPassword')) {
+      this.get('errors').pushObject({
+        name: 'Passwords Do Not Match',
+        message: 'Please double check and try again'
+      });
+      this.get('spinner').hide('page-spinner');
+      return;
+    }
+
     this.get('user').save()
     .catch(err => {
       if(err.errors) {
@@ -18,6 +39,7 @@ export default Ember.Component.extend({
     .then(user => {
       this.get('spinner').hide('page-spinner');
       this.set('user.password', undefined);
+      this.set('changingPassword', false);
       let userId = this.get('user').id;
       if (userId && this.get('onSave')) this.get('onSave')(userId);
     });
@@ -35,18 +57,7 @@ export default Ember.Component.extend({
       }
     },
     changePassword() {
-      let newPassword = prompt("Please enter a new password", "");
-      if(newPassword == null) return;
-      if (newPassword.length < 7) {
-        this.get('errors').pushObject({
-          name: 'Invalid Password',
-          message: 'Please enter a password longer than 7 characters'
-        });
-      }
-      else {
-        this.set('user.password', newPassword);
-        this.saveUser();
-      }
+      this.set('changingPassword', true);
     },
     delete() {
       let result = confirm("Are you sure you want to delete?");
@@ -66,6 +77,13 @@ export default Ember.Component.extend({
     },
     cancel() {
       this.get('onCancel')();
+    },
+    toggleAdmin() {
+      let result = confirm("Are you sure you want to change administrative privileges? Your organization will be orphaned without at least one administrator.");
+      if (result) {
+        this.toggleProperty('user.isAdmin');
+        this.saveUser();
+      }
     }
   }
 });

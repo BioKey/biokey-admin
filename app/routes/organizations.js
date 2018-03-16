@@ -4,6 +4,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service(),
 
   beforeModel() {
-    if (this.get('currentUser').get('user').get('isAdmin') == false) this.transitionTo('');
+    if (this.get('currentUser.user.isAdmin') == false) this.transitionTo('');
   }
 });

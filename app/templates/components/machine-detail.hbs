@@ -1,6 +1,6 @@
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		<a href="#" onclick="window.history.back()" class="nav-link">&larr; Back</a>
+		{{#link-to 'machines.list' class="nav-link"}}&larr; Back{{/link-to}}
 	</li>
 	<li class="nav-item">
 		<a class="nav-link{{if machine.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>

@@ -33,6 +33,7 @@ Router.map(function() {
     this.route('list', {path: ''});
     this.route('activity', {path: ':activity_id'});
   });
+  this.route('dashboard');
 });
 
 export default Router;

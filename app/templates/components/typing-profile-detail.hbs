@@ -1,6 +1,6 @@
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		<a href="#" onclick="window.history.back()" class="nav-link">&larr; Back</a>
+		{{#link-to 'profiles.list' class="nav-link"}}&larr; Back{{/link-to}}
 	</li>
 	<li class="nav-item">
 		<a class="nav-link{{if typingProfile.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
@@ -25,6 +25,12 @@
 {{error-container errors=errors}}
 
 <h1>Typing Profile</h1>
+<br/>
+{{#unless isNew}}
+<button class="btn btn-primary" id="isLockedField" {{action "toggleLocked"}}>{{#if typingProfile.isLocked}}Unlock Remotely{{else}}Lock Remotely{{/if}}</button>
+<br/>
+<br/>
+{{/unless}}
 <form>
 	<div class="form-group">
 	{{#if isNew}}
@@ -50,15 +56,20 @@
 	{{/if}}
 	</div>
 	
-
+	{{#unless isNew}}
+	{{#unless typingProfile.lastHeartbeat}}
 	<div class="form-group">
 		<label for="heartbeatField">Last Heartbeat</label>
-		{{input type="text" class="form-control" readonly=(if isEditing "readonly") id="heartbeatField" placeholder="Enter last heartbeat" value=typingProfile.lastHeartbeat }}
+		{{input type="text" class="form-control" readonly="readonly" id="heartbeatField" placeholder="Enter last heartbeat" value=(unix typingProfile.lastHeartbeat) }}
 	</div>
+	{{/unless}}
+	{{/unless}}
 
 	<div class="form-group">
 		<label for="strategiesField">Challenge Strategies</label>
-		{{input type="text" class="form-control" id="strategiesField" placeholder="Enter challenge strategies" value=typingProfile.challengeStrategies }}
-		<label for="strategiesField"> Input in CSV format. Default for your organization: {{currentUser.user.organization.defaultChallengeStrategies}}. Suggested: GoogleAuth,TextMessage </label>
+		{{#power-select-multiple-with-create options=currentUser.user.organization.defaultChallengeStrategies selected=selectedStrategies onchange=(action (mut selectedStrategies)) oncreate=(action "createStrategy") as |strategy|}}
+		{{strategy}}
+		{{/power-select-multiple-with-create}}
+		<label for="strategiesField">If the strategy you want isn't an option, feel free to add your own!</label>
 	</div>
 </form>
