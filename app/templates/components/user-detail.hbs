@@ -1,7 +1,9 @@
 <ul class="nav justify-content-end">
+	{{#if currentUser.user.isAdmin}}
 	<li class="nav-item">
 		{{#link-to 'users.list' class="nav-link"}}&larr; Back{{/link-to}}
 	</li>
+	{{/if}}
 	<li class="nav-item">
 		<a class="nav-link{{if user.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
 	</li>
@@ -12,6 +14,7 @@
 		<a class="nav-link" {{action "delete"}} href="#">Delete</a>
 		{{/if}}
 	</li>
+	{{#if currentUser.user.isAdmin}}
 	{{#if user.isNew}}
 	<a class="btn btn-outline-danger" {{action "cancel"}} href="#">Cancel</a>
 	{{else}}
@@ -19,13 +22,27 @@
 		{{#link-to 'users.new' class="nav-link"}}New{{/link-to}}
 	</li>
 	{{/if}}
-
+	{{/if}}
 </ul>
 
 {{error-container errors=errors}}
 
+{{#if currentUser.user.isAdmin}}
 <h1>User: {{user.name}}</h1>
+{{else}}
+<h1>Hi {{user.name}}!</h1>
+{{/if}}
 <form>
+	{{#if changingPassword}}
+	<div class="form-group">
+		<label for="passwordField">Enter Your New Password</label>
+		{{input type="password" class="form-control" id="passwordField" placeholder="Enter password" value=user.password }}
+	</div>
+	<div class="form-group">
+		<label for="passwordConfirmField">Retype Password</label>
+		{{input type="password" class="form-control" id="passwordConfirmField" placeholder="Enter password" value=confirmPassword }}
+	</div>
+	{{else}}
 	<div class="form-group">
 		<label for="nameField">Name</label>
 		{{input type="text" class="form-control" id="nameField" placeholder="Enter name" value=user.name }}
@@ -41,6 +58,10 @@
 		<label for="passwordField">Password</label>
 		{{input type="password" class="form-control" id="passwordField" placeholder="Enter password" value=user.password }}
 	</div>
+	<div class="form-group">
+		<label for="passwordConfirmField">Retype Password</label>
+		{{input type="password" class="form-control" id="passwordConfirmField" placeholder="Enter password" value=confirmPassword }}
+	</div>
 	{{else}}
 	<div class="form-group align-items-right">
 	<a class="text-right" {{action "changePassword"}} href="#">Change Password</a>
@@ -52,10 +73,12 @@
 		{{input type="tel" class="form-control" id="phoneField" placeholder="Enter phone" value=user.phoneNumber }}
 	</div>
 
+	{{#if currentUser.user.isAdmin}}
 	<div class="form-group">
 		<label for="orgField">{{#link-to 'organizations.organization' currentUser.user.organization.id}}Organization &rarr;{{/link-to}}</label>
 		{{input type="text" class="form-control" readonly="readonly" id="orgField" placeholder="Enter organization" value=currentUser.user.organization.name }}
 	</div>
+	{{/if}}
 
 	{{#if user.isNew}}
 	<div class="form-check">
@@ -63,12 +86,16 @@
 		<label class="form-check-label" for="adminField">Create as Administrator</label>
 	</div>
 	{{else}}
+	{{#if currentUser.user.isAdmin}}
 	<div class="form-group">
 		<button class="btn btn-primary" id="adminField" {{action "toggleAdmin"}}>{{#if user.isAdmin}}Remove Administrator Privileges{{else}}Promote to Administrator{{/if}}</button>
 	</div>
 	{{/if}}
+	{{/if}}
+	{{/if}}
 </form>
 
+{{#if currentUser.user.isAdmin}}
 {{#if typingProfiles}}
 <br/>
 <div class="card">
@@ -79,4 +106,5 @@
 		</p>
 	</div>
 </div>
+{{/if}}
 {{/if}}

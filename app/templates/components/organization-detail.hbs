@@ -1,8 +1,5 @@
 <ul class="nav justify-content-end">
 	<li class="nav-item">
-		{{#link-to 'organizations.list' class="nav-link"}}&larr; Back{{/link-to}}
-	</li>
-	<li class="nav-item">
 		<a class="nav-link{{if org.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
 	</li>
 	<li class="nav-item">
@@ -16,7 +13,7 @@
 
 {{error-container errors=errors}}
 
-<h1>Org: {{org.name}}</h1>
+<h1>Welcome to {{org.name}}</h1>
 <form>
 	<div class="form-group">
 		<label for="nameField">Name</label>

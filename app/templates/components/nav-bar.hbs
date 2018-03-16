@@ -1,29 +1,28 @@
+{{#if session.isAuthenticated}}
+{{#if currentUser.user.isAdmin}}
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        {{#link-to 'index' class='nav-link'}}Home{{/link-to}}
+        {{#link-to 'dashboard' class='nav-link'}}Dashboard{{/link-to}}
       </li>
-      {{#if session.isAuthenticated}}
-      {{#if currentUser.user.isAdmin}}
-        <li class="nav-item">
-          {{#link-to 'users' class='nav-link'}}Users{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'machines' class='nav-link'}}Machines{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'organizations' class='nav-link'}}Organizations{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'profiles' class='nav-link'}}Profiles{{/link-to}}
-        </li>
-        <li class="nav-item">
-          {{#link-to 'activities' class='nav-link'}}Activities{{/link-to}}
-        </li>
-      {{/if}}
-      {{/if}}
+      <li class="nav-item">
+        {{#link-to 'organizations.organization' currentUser.user.organization.id class='nav-link'}}Your Organization{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to 'users' class='nav-link'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Users{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to 'machines' class='nav-link'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machines{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to 'profiles' class='nav-link'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Profiles{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to 'activities' class='nav-link'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Activities{{/link-to}}
+      </li>
     </ul>
-
   </div>
 </nav>
+{{/if}}
+{{/if}}

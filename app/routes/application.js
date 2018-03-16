@@ -11,7 +11,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   sessionAuthenticated() {
     this._super(...arguments);
-    this._loadCurrentUser();
+    // Unlike the model hooks, this doesn't block! Will need to call again in index.js.
+    return this._loadCurrentUser();
   },
 
   _loadCurrentUser() {
