@@ -146,4 +146,23 @@ body {
 .clickable-row {
 	cursor: pointer;
 }
+
+/*
+ * Icons
+ */
+.fa-circle-o {
+  color: #999;
+  font-size:0.6rem;
+}
+.fa-circle {
+  color: #42b72a;
+  font-size:0.6rem;
+}
+.fa-lock {
+  color: #999;
+}
+.fa-unlock {
+  color: #42b72a;
+}
+
 @import "ember-power-select";

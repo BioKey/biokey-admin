@@ -7,4 +7,4 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   setupController(controller, model) {
     controller.set('profile', model);
   }
-});  
+});
