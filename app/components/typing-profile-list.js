@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	query: null,
 	typingProfiles: null,
 	isActivePeriod: 30000, // 30 seconds
 	
@@ -27,5 +28,66 @@ export default Ember.Component.extend({
 			});
 		}
 		Ember.run.later(() => this._poll(interval), interval);
+	},
+
+	filteredTypingProfilesWithStatus: Ember.computed('query', 'profiles', function() { 
+        let _query = this.get('query');
+        const records = this.get('typingProfilesWithStatus'); 
+     
+        if (Ember.isEmpty(_query)) { 
+          return records;
+        }
+     
+        _query = _query.toLowerCase();
+
+		if (_query == 'locked') return this.filterByLockStatus(true, records);
+		if (_query == 'unlocked') return this.filterByLockStatus(false, records);
+		if (_query == 'online') return this.filterByOnlineStatus(true, records);
+		if (_query == 'offline') return this.filterByOnlineStatus(false, records);
+		else return this.filterByOther(_query, records);
+
+        return records.filter(function(profile) { 
+          if (profile.get('user') && profile.get('machine')) {
+            if (
+				profile.get('user').get('name').toLowerCase().match(_query) || 
+				profile.get('machine').get('mac').toLowerCase().match(_query)
+			) { 
+                return true; 
+            } 
+          }
+          return false; 
+        });
+	}),
+	
+	filterByOther: function(_query, records) {
+		return records.filter(function(profile) { 
+			if (profile.get('user') && profile.get('machine')) {
+			  if (
+				  profile.get('user').get('name').toLowerCase().match(_query) || 
+				  profile.get('machine').get('mac').toLowerCase().match(_query)
+			  ) { 
+				  return true; 
+			  } 
+			}
+			return false; 
+		});
+	},
+
+	filterByLockStatus(query, records) {
+		return records.filter(function(profile) {
+			if (profile.get('user') && profile.get('machine')) {
+				if (profile.get('isLocked') == query) return true;
+			}
+			return false;
+		});
+	},
+
+	filterByOnlineStatus(query, records) {
+		return records.filter(function(profile) {
+			if (profile.get('user') && profile.get('machine')) {
+				if (profile.get('isActive') == query) return true;
+			}
+			return false;
+		});
 	}
 });
