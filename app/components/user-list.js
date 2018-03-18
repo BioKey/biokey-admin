@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     query: null,
+    sortingKey: ['organization','name', 'email'],
     filtered: Ember.computed('query', 'users', function() { 
         let _query = this.get('query');
         const records = this.get('users'); 
@@ -21,5 +22,6 @@ export default Ember.Component.extend({
           }
           return false; 
         });
-    })
+    }),
+    sortedFiltered: Ember.computed.sort('filtered', 'sortingKey')
 });

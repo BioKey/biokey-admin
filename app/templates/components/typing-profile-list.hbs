@@ -9,7 +9,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each filteredTypingProfilesWithStatus as |tp|}}
+		{{#each sortedModel as |tp|}}
 		{{#if tp.user}}
 		{{#if tp.machine}}
 		{{#unless tp.isDeleted}}

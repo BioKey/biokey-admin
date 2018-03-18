@@ -5,6 +5,9 @@ export default Ember.Component.extend({
 	typingProfiles: null,
 	isActivePeriod: 30000, // 30 seconds
 	
+	sortingKey: ['user.name', 'machine.mac'],
+	sortedModel: Ember.computed.sort('filteredTypingProfilesWithStatus', 'sortingKey'),
+	
 	typingProfilesWithStatus: Ember.computed('typingProfiles.@each.lastHeartbeat', 'typingProfiles.@each.isLocked', function() {
 		let self = this;
 		return this.get('typingProfiles').map(function(profile, index) {
