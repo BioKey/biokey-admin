@@ -1,3 +1,4 @@
-<h2>{{model.organization.name}} Registration Link:</h2> 
-{{url}}register?organization={{model.organization.id}}
-{{outlet}}
+{{dashboard-link organization=user.organization}}
+<br/>
+<h4>Important Activities In Your Organization</h4>
+{{activity-list activities=model}}

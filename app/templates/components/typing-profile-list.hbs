@@ -24,8 +24,7 @@
 			{{tp.machine.mac}}
 			{{/link-to}}
 		</td>
-		<th scope="row">{{tp.isActive}}
-			{{#if tp.isActive}}{{fa-icon "circle"}}{{else}}{{fa-icon "circle-o"}}{{/if}}
+		<th scope="row">{{#if tp.isActive}}{{fa-icon "circle"}}{{else}}{{fa-icon "circle-o"}}{{/if}}
 		</th>
 		<td>{{#if tp.isLocked}}{{fa-icon "lock"}}{{else}}{{fa-icon "unlock"}}{{/if}}</td>
 		{{/link-to}}
