@@ -6,5 +6,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
   setupController(controller, model) {
     controller.set('profile', model);
+    this.get('store').findAll('machine').then(function(machines) {
+			controller.set('machines', machines);
+    });
+    this.get('store').findAll('activity').then(function(activities) {
+      controller.set('activities', activities);
+    });
   }
 });

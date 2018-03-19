@@ -5,6 +5,8 @@ export default Ember.Component.extend({
   selectedUser: null,
   selectedMachine: null,
   selectedStrategies: null,
+  machineChanged: false,
+  activities: null,
   spinner: Ember.inject.service('spinner'),
   currentUser: Ember.inject.service(),
   errors: Ember.A([]),
@@ -12,6 +14,7 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
     this.set('selectedStrategies', this.get('typingProfile.challengeStrategies'));
+    this.set('selectedMachine', this.typingProfile.get('machine'));
   },
 
   saveProfile() {
@@ -30,6 +33,11 @@ export default Ember.Component.extend({
       if (typingProfileId && this.get('onSave')) this.get('onSave')(typingProfileId);
     });
   },
+
+  profileActivities: Ember.computed.filter('activities', function(activity) {
+    if (this.get('typingProfile').get('id') == activity.get('typingProfile').get('id')) return true;
+    return false;
+  }).property('activities', 'typingProfile'), 
 
   actions: {
     save() {
@@ -66,6 +74,10 @@ export default Ember.Component.extend({
       this.set('selectedUser', user);
     },
     selectMachine(machine) {
+      if(machine != this.get('selectedMachine')) {
+        this.set('machineChanged', true);
+      }
+      else this.set('machineChanged', false);
       this.get('typingProfile').set('machine', machine);
       this.set('selectedMachine', machine);
     },

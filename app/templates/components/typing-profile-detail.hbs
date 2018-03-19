@@ -3,7 +3,7 @@
 		{{#link-to 'profiles.list' class="nav-link"}}&larr; Back{{/link-to}}
 	</li>
 	<li class="nav-item">
-		<a class="nav-link{{if typingProfile.hasDirtyAttributes '' ' disabled'}}" {{action "save"}} href="#">Save</a>
+		<a class="nav-link{{if machineChanged '' ' disabled'}}" {{action "save"}} href="#">Save</a>
 	</li>
 	<li class="nav-item">
 		{{#if typingProfile.hasDirtyAttributes}}
@@ -45,15 +45,16 @@
 	</div>
 
 	<div class="form-group">
+	{{#unless isNew}}
+		<label for="machineField">{{#link-to 'machines.machine' typingProfile.machine.id}}Machine &rarr;{{/link-to}}</label>
+		{{input type="text" class="form-control" readonly="readonly" id="machineField" placeholder="Enter machine" value=typingProfile.machine.mac }}
+	{{/unless}}
 	{{#if isNew}}
 		<label for="machineField">Machine</label>
+	{{/if}}
 		{{#power-select options=machines onchange=(action "selectMachine") selected=selectedMachine as |machine|}}
 		{{machine.mac}}
 		{{/power-select}}
-	{{else}}
-		<label for="machineField">{{#link-to 'machines.machine' typingProfile.machine.id}}Machine &rarr;{{/link-to}}</label>
-		{{input type="text" class="form-control" readonly="readonly" id="machineField" placeholder="Enter machine" value=typingProfile.machine.mac }}
-	{{/if}}
 	</div>
 	
 	{{#unless isNew}}
@@ -73,3 +74,6 @@
 		<label for="strategiesField">If the strategy you want isn't an option, feel free to add your own!</label>
 	</div>
 </form>
+
+<h2>Recent Activity</h2>
+{{activity-list activities=profileActivities}}

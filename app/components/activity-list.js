@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     filtered: Ember.computed('query', 'activities', function() { 
         let _query = this.get('query');
         const records = this.get('activities'); 
-     
+
         if (Ember.isEmpty(_query)) { 
           return records;
         }
