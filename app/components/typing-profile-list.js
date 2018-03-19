@@ -23,14 +23,16 @@ export default Ember.Component.extend({
 
 	_poll(interval) {
 		let self = this;
-		if (this.get('refreshProfiles')) {
+		if (!self.isDestroyed) {
+		  if (this.get('refreshProfiles')) {
 			this.get('refreshProfiles')().then(profiles => {
-				if (!self.isDestroyed) {
-					self.set('typingProfiles', profiles);
-				}
+			  if (!self.isDestroyed) {
+				self.set('typingProfiles', profiles);
+			  }
 			});
+		  }
+		  Ember.run.later(() => this._poll(interval), interval);
 		}
-		Ember.run.later(() => this._poll(interval), interval);
 	},
 
 	filteredTypingProfilesWithStatus: Ember.computed('query', 'profiles', function() { 
@@ -48,18 +50,6 @@ export default Ember.Component.extend({
 		if (_query == 'online') return this.filterByOnlineStatus(true, records);
 		if (_query == 'offline') return this.filterByOnlineStatus(false, records);
 		else return this.filterByOther(_query, records);
-
-        return records.filter(function(profile) { 
-          if (profile.get('user') && profile.get('machine')) {
-            if (
-				profile.get('user').get('name').toLowerCase().match(_query) || 
-				profile.get('machine').get('mac').toLowerCase().match(_query)
-			) { 
-                return true; 
-            } 
-          }
-          return false; 
-        });
 	}),
 	
 	filterByOther: function(_query, records) {

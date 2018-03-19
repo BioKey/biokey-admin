@@ -13,6 +13,7 @@
 		{{#if tp.user}}
 		{{#if tp.machine}}
 		{{#unless tp.isDeleted}}
+		{{#unless tp.isNew}}
 		{{#link-to 'profiles.profile' tp.id tagName="tr" class="clickable-row"}}
 		<th scope="row">
 			{{#link-to 'users.user' tp.user}}
@@ -28,6 +29,7 @@
 		</th>
 		<td>{{#if tp.isLocked}}{{fa-icon "lock"}}{{else}}{{fa-icon "unlock"}}{{/if}}</td>
 		{{/link-to}}
+		{{/unless}}
 		{{/unless}}
 		{{/if}}
 		{{/if}}
