@@ -6,15 +6,7 @@ export default Ember.Component.extend({
 	isActivePeriod: 30000, // 30 seconds
 	
 	sortingKey: ['user.name', 'machine.mac'],
-	sortedModel: Ember.computed.sort('filteredTypingProfilesWithStatus', 'sortingKey'),
-	
-	typingProfilesWithStatus: Ember.computed('typingProfiles.@each.lastHeartbeat', 'typingProfiles.@each.isLocked', function() {
-		let self = this;
-		return this.get('typingProfiles').map(function(profile, index) {
-			profile.set('isActive', (new Date).getTime() - profile.get('lastHeartbeat') < self.get('isActivePeriod'));
-			return profile;
-		});
-	}),
+	filteredSortedProfiles: Ember.computed.sort('filteredTypingProfilesWithStatus', 'sortingKey'),
 
 	init() {
 		this._super(...arguments);
@@ -34,6 +26,14 @@ export default Ember.Component.extend({
 		  Ember.run.later(() => this._poll(interval), interval);
 		}
 	},
+
+  typingProfilesWithStatus: Ember.computed('typingProfiles.@each.lastHeartbeat', 'typingProfiles.@each.isLocked', function() {
+    let self = this;
+    return this.get('typingProfiles').map(function(profile, index) {
+      profile.set('isActive', (new Date).getTime() - profile.get('lastHeartbeat') < self.get('isActivePeriod'));
+      return profile;
+    });
+  }),
 
 	filteredTypingProfilesWithStatus: Ember.computed('query', 'profiles', function() { 
         let _query = this.get('query');
@@ -66,7 +66,7 @@ export default Ember.Component.extend({
 		});
 	},
 
-	filterByLockStatus(query, records) {
+	filterByLockStatus: function(query, records) {
 		return records.filter(function(profile) {
 			if (profile.get('user') && profile.get('machine')) {
 				if (profile.get('isLocked') == query) return true;
@@ -75,7 +75,7 @@ export default Ember.Component.extend({
 		});
 	},
 
-	filterByOnlineStatus(query, records) {
+	filterByOnlineStatus: function(query, records) {
 		return records.filter(function(profile) {
 			if (profile.get('user') && profile.get('machine')) {
 				if (profile.get('isActive') == query) return true;

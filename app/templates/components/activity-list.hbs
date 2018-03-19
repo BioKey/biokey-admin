@@ -9,7 +9,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each sortedFiltered as |activity|}}
+		{{#each filteredSortedActivities as |activity|}}
 		{{#if activity.typingProfile}}
 		{{#if activity.typingProfile.user}}
 		{{#if activity.typingProfile.machine}}
@@ -35,3 +35,4 @@
 		{{/each}}
 	</tbody>
 </table>
+{{page-numbers currentPage=page totalPages=totalPages onPageChange=(action 'onPageChange')}}

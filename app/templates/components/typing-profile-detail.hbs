@@ -45,12 +45,10 @@
 	</div>
 
 	<div class="form-group">
-	{{#unless isNew}}
-		<label for="machineField">{{#link-to 'machines.machine' typingProfile.machine.id}}Machine &rarr;{{/link-to}}</label>
-		{{input type="text" class="form-control" readonly="readonly" id="machineField" placeholder="Enter machine" value=typingProfile.machine.mac }}
-	{{/unless}}
 	{{#if isNew}}
 		<label for="machineField">Machine</label>
+	{{else}}
+		<label for="machineField">{{#link-to 'machines.machine' typingProfile.machine.id}}Machine &rarr;{{/link-to}}</label>
 	{{/if}}
 		{{#power-select options=machines onchange=(action "selectMachine") selected=selectedMachine as |machine|}}
 		{{machine.mac}}
@@ -75,5 +73,7 @@
 	</div>
 </form>
 
+{{#unless isNew}}
 <h2>Recent Activity</h2>
-{{activity-list activities=profileActivities}}
+{{activity-list activities=profileActivities serverPaginated=false}}
+{{/unless}}

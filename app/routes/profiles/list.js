@@ -4,4 +4,4 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').findAll('typing-profile')
   }
-}); 
+});

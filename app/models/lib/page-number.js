@@ -1,0 +1,1 @@
+export default Ember.Object.extend({dots: false, current: false, num: 1});
