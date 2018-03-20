@@ -1,11 +1,15 @@
+<form>
+  <div class="form-group">
 {{input type="text" class="form-control" id="searchField" placeholder="Search typing profiles..." value=query }}
+</div>
+</form>
 <table class="table table-hover">
 	<thead>
 		<tr>
 			<th scope="col">User</th>
 			<th scope="col">Machine</th>
-			<th scope="col"></th>
-			<th scope="col">Status</th>
+			<th width="20" scope="col" class="justify-content-center">Online</th>
+			<th width="20" scope="col" class="justify-content-center">Status</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,9 +29,14 @@
 			{{tp.machine.mac}}
 			{{/link-to}}
 		</td>
-		<th scope="row">{{#if tp.isActive}}{{fa-icon "circle"}}{{else}}{{fa-icon "circle-o"}}{{/if}}
-		</th>
-		<td>{{#if tp.isLocked}}{{fa-icon "lock"}}{{else}}{{fa-icon "unlock"}}{{/if}}</td>
+		<td  class="justify-content-center" scope="row">
+			{{#if tp.isActive}}
+			{{fa-icon "circle" size="lg"}}
+			{{else}}
+			{{fa-icon "circle-o" size="lg"}}
+			{{/if}}
+			</td>
+		<td  class="justify-content-center">{{#if tp.isLocked}}{{fa-icon "lock" size="lg"}}{{else}}{{fa-icon "unlock" size="lg"}}{{/if}}</td>
 		{{/link-to}}
 		{{/unless}}
 		{{/unless}}

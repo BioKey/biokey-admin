@@ -1,4 +1,8 @@
+<form>
+  <div class="form-group">
 {{input type="text" class="form-control" id="searchField" placeholder="Search activities..." value=query }}
+</div>
+</form>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -26,7 +30,7 @@
 			{{/link-to}}
 		</td>
 		<td>{{activity.activityType}}</td>
-		<td>{{moment activity.timestamp}}</td>
+		<td>{{moment-from-now activity.timestamp}}</td>
 		{{/link-to}}
 		{{/if}}
 		{{/if}}
