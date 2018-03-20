@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     serverPaginated: true,
     page: 1,
     totalPages: Ember.computed.alias('activities.meta.pages'),
-    recordsPerPage: 10,
+    recordsPerPage: 50,
 
     sortingKey: ['timestamp:desc'],
     sortingKeyServer: '-timestamp',
@@ -15,7 +15,6 @@ export default Ember.Component.extend({
 
     didReceiveAttrs() {
         this._super(...arguments);
-
         this.pageChanged();
     },
 

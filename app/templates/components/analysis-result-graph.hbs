@@ -1,0 +1,5 @@
+{{#if shouldLoadChart}}
+{{line-chart data=chartFormattedResults options=chartOptions}}
+{{/if}}
+<br/>
+{{range-slider start=sliderPosition min=sliderMin max=sliderMax connect=true on-change="sliderChangeAction" on-start="sliderStartAction" on-end="sliderEndAction"}}

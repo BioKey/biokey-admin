@@ -74,6 +74,15 @@
 </form>
 
 {{#unless isNew}}
-<h2>Recent Activity</h2>
-{{activity-list activities=profileActivities serverPaginated=false}}
+<h4>Recent Activity</h4>
+{{analysis-result-graph typingProfile=typingProfile onRefresh=onRefresh}}
+<br/><br/>
+<div class="card">
+	{{#link-to 'activities' class="card-header clickable-row" tagName="h5"}}Activities{{/link-to}}
+	<div class="card-body">
+		<p class="card-text">
+			{{activity-list activities=profileActivities serverPaginated=false}}
+		</p>
+	</div>
+</div>
 {{/unless}}
