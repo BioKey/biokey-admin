@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 	analysisResults: [],
 	typingProfile: null,
 	initialWindow: 24 * 60 * 60 * 1000,
-	pollingWindow: 6000,
+	pollingWindow: 8000,
 	shouldLoadChart: false,
 
 	dataMin: 0,
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 	sliderPosition: [1, 1],
 	isSliding: false,
 
-	chartFormattedResults: Ember.computed('analysisResults.@each.typingProfile', function() {
+	chartFormattedResults: Ember.computed('analysisResults.@each.timestamp', function() {
 		let self = this;
 		let results = [
 			['timestamp', 'probability']
@@ -92,18 +92,21 @@ export default Ember.Component.extend({
 
 	didReceiveAttrs() {
 		this._super(...arguments);
-		
-		let self = this;
 
+		// Reset analysisResults
+		this.set('analysisResults', []);
+		
 		this.set('dataMax', Date.now());
 		this.set('chartMax', this.get('dataMax'));
 		this.set('sliderMax', this.get('dataMax'));
-		this.set('dataMin', self.get('dataMax') - self.get('initialWindow'));
+		this.set('dataMin', this.get('dataMax') - this.get('initialWindow'));
 		this.set('chartMin', this.get('dataMin'));
 		this.set('sliderMin', this.get('dataMin'));
 
+		let self = this;
 		this.get('onRefresh')(this.get('dataMin'), this.get('dataMax'), this.get('typingProfile')).then((results) => {
-			self.get('analysisResults').pushObjects(results.toArray());
+			let vanillaResults = results.toArray();
+			self.get('analysisResults').pushObjects(vanillaResults);
 			self.set('chartOptions.hAxis.viewWindow', { max: self.get('chartMin'), min: self.get('chartMax') });
 			self.set('sliderPosition', [self.get('sliderMin'), self.get('sliderMax')]);
 			self.set('shouldLoadChart', true);

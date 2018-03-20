@@ -1,5 +1,10 @@
-{{#if shouldLoadChart}}
-{{line-chart data=chartFormattedResults options=chartOptions}}
+{{#if analysisResults.length}}
+	{{#if shouldLoadChart}}
+	{{line-chart data=chartFormattedResults options=chartOptions}}
+	{{/if}}
+	<br/>
+	{{range-slider start=sliderPosition min=sliderMin max=sliderMax connect=true on-change="sliderChangeAction" on-start="sliderStartAction" on-end="sliderEndAction"}}
+	<br/>
+{{else}}
+	<h6>There has been no recent analysis run on this profile.</h6>
 {{/if}}
-<br/>
-{{range-slider start=sliderPosition min=sliderMin max=sliderMax connect=true on-change="sliderChangeAction" on-start="sliderStartAction" on-end="sliderEndAction"}}
