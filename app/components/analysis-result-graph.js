@@ -29,14 +29,8 @@ export default Ember.Component.extend({
 	chartOptions: {
 		title: 'Percent Probability of Authentic User (Last 24 Hours)',
 		height: 480,
-
 		legend: {
 			position: 'none'
-		},
-
-		animation: {
-			startup: true,
-			easing: 'inAndOut',
 		},
 		hAxis: {
 			title: '',
@@ -44,7 +38,7 @@ export default Ember.Component.extend({
 				count: -1,
 				units: {
 					days: { format: ['MMM dd'] },
-					hours: { format: ['HH:mm', 'ha'] },
+					hours: { format: ['HH:mm', 'ha'] }
 				}
 			},
 			minorGridlines: {
@@ -107,6 +101,7 @@ export default Ember.Component.extend({
 		this.get('onRefresh')(this.get('dataMin'), this.get('dataMax'), this.get('typingProfile')).then((results) => {
 			let vanillaResults = results.toArray();
 			self.get('analysisResults').pushObjects(vanillaResults);
+			console.log(self.get('analysisResults'));
 			self.set('chartOptions.hAxis.viewWindow', { max: self.get('chartMin'), min: self.get('chartMax') });
 			self.set('sliderPosition', [self.get('sliderMin'), self.get('sliderMax')]);
 			self.set('shouldLoadChart', true);
