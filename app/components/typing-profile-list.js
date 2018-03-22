@@ -23,8 +23,8 @@ export default Ember.Component.extend({
 			  }
 			});
 		  }
-		  Ember.run.later(() => this._poll(interval), interval);
 		}
+		Ember.run.later(() => this._poll(interval), interval);
 	},
 
   typingProfilesWithStatus: Ember.computed('typingProfiles.@each.lastHeartbeat', 'typingProfiles.@each.isLocked', function() {
