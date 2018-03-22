@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({  
   session: Ember.inject.service(),
-  queryParams: ['organization', 'name'],
+  queryParams: ['orgId', 'orgName'],
   organization: null,
   actions: {
     register: function() {
