@@ -8,8 +8,8 @@
 		<tr>
 			<th scope="col">User</th>
 			<th scope="col">Machine</th>
-			<th width="20" scope="col" class="justify-content-center">Online</th>
-			<th width="20" scope="col" class="justify-content-center">Status</th>
+			<th width="20" scope="col" class="center-text-table-cell">Online</th>
+			<th width="20" scope="col" class="center-text-table-cell">Status</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -29,14 +29,14 @@
 			{{tp.machine.mac}}
 			{{/link-to}}
 		</td>
-		<td  class="justify-content-center" scope="row">
+		<td class="center-text-table-cell">
 			{{#if tp.isActive}}
 			{{fa-icon "circle" size="lg"}}
 			{{else}}
 			{{fa-icon "circle-o" size="lg"}}
 			{{/if}}
 			</td>
-		<td  class="justify-content-center">{{#if tp.isLocked}}{{fa-icon "lock" size="lg"}}{{else}}{{fa-icon "unlock" size="lg"}}{{/if}}</td>
+		<td class="center-text-table-cell">{{#if tp.isLocked}}{{fa-icon "lock" size="lg"}}{{else}}{{fa-icon "unlock" size="lg"}}{{/if}}</td>
 		{{/link-to}}
 		{{/unless}}
 		{{/unless}}

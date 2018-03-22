@@ -10,7 +10,7 @@
 			<th scope="col">Organization</th>
 			<th scope="col">Email</th>
 			<th scope="col">Phone Number</th>
-			<th scope="col">Administrator</th>
+			<th scope="col" class="center-text-table-cell">Administrator</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,7 +28,7 @@
 		</td>
 		<td>{{user.email}}</td>
 		<td>{{user.phoneNumber}}</td>
-		<td>{{#if user.isAdmin}}{{fa-icon "check-square"}}{{else}}{{fa-icon "square" style="regular"}}{{/if}}</td>
+		<td class="center-text-table-cell">{{#if user.isAdmin}}{{fa-icon "check-square"}}{{else}}{{fa-icon "square" style="regular"}}{{/if}}</td>
 		{{/link-to}}
 		{{/unless}}
 		{{/unless}}
