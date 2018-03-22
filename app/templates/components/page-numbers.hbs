@@ -1,40 +1,42 @@
 <div class="pagination-centered">
-  <ul class="pagination">
+  <nav aria-label="Pagination">
+  <ul class="pagination justify-content-center">
     {{#if canStepBackward}}
-      <li class="arrow prev enabled-arrow">
-        <a href="#" {{action "incrementPage" -1}}>&laquo;</a>
+      <li class="page-item prev enabled-arrow">
+        <a href="#" class="page-link" {{action "incrementPage" -1}}>&laquo;</a>
       </li>
     {{else}}
-      <li class="arrow prev disabled">
-        <a href="#" {{action "incrementPage" -1}}>&laquo;</a>
+      <li class="arrow page-item prev disabled">
+        <a href="#" class="page-link" {{action "incrementPage" -1}}>&laquo;</a>
       </li>
     {{/if}}
 
     {{#each pages as |page|}}
       {{#if page.dots}}
-        <li class="dots disabled">
+        <li class="page-item dots disabled">
           <span>...</span>
         </li>
       {{/if}}
       {{#if page.current}}
-        <li class="active page-number">
-          <a>{{page.num}}</a>
+        <li class="active page-item page-number">
+          <a class="page-link">{{page.num}}</a>
         </li>
       {{else}}
-        <li class="page-number">
-          <a href="#" {{action "pageClicked" page.num}}>{{page.num}}</a>
+        <li class="page-item page-number">
+          <a href="#" class="page-link" {{action "pageClicked" page.num}}>{{page.num}}</a>
         </li>
       {{/if}}
     {{/each}}
 
     {{#if canStepForward}}
-      <li class="arrow next enabled-arrow">
-        <a href="#" {{action "incrementPage" 1}}>&raquo;</a>
+      <li class="arrow page-item next enabled-arrow">
+        <a href="#" class="page-link" {{action "incrementPage" 1}}>&raquo;</a>
       </li>
     {{else}}
-      <li class="arrow next disabled">
-        <a href="#" {{action "incrementPage" 1}}>&raquo;</a>
+      <li class="arrow page-item next disabled">
+        <a href="#" class="page-link" {{action "incrementPage" 1}}>&raquo;</a>
       </li>
     {{/if}}
   </ul>
+  </nav>
 </div>
