@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 	analysisResults: [],
 	typingProfile: null,
 	initialWindow: 24 * 60 * 60 * 1000,
-	pollingWindow: 8000,
+	pollingWindow: 3000,
 	shouldLoadChart: false,
 
 	dataMin: 0,

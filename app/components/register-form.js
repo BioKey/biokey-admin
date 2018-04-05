@@ -4,13 +4,13 @@ const { service } = Ember.inject;
 
 export default Ember.Component.extend({
   session: service(),
-  organization: null,
+  orgId: null,
   errors:  Ember.A([]),
   actions: {
     submit(){
       var credentials = this.getProperties('name', 'email', 'password');
-      if (this.organization)
-        credentials.organization = this.organization;
+      if (this.orgId)
+        credentials.organization = this.orgId;
       this.get('session').authenticate('authenticator:custom', {
         method: 'register',
         credentials
