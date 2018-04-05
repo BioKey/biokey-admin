@@ -55,5 +55,7 @@ module.exports = function(environment) {
     ENV.host = 'http://18.219.182.1:3000';
   }
 
+  ENV.host = process.env.API_URL || ENV.host;
+  
   return ENV;
 };
