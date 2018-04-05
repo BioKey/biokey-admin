@@ -24,6 +24,12 @@ module.exports = function(environment) {
     }
   };
 
+  if (environment === 'production') {
+    ENV.host = 'http://18.219.182.1:3000';
+  }
+  console.log(process.env.API_URL);
+  ENV.host = process.env.API_URL || ENV.host;
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -51,11 +57,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-    ENV.host = 'http://18.219.182.1:3000';
-  }
 
-  ENV.host = process.env.API_URL || ENV.host;
-  
+
   return ENV;
 };
