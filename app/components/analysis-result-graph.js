@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 	analysisResults: [],
 	typingProfile: null,
-	initialWindow: 24 * 60 * 60 * 1000,
+	initialWindow: 1 * 60 * 60 * 1000,
 	pollingWindow: 3000,
 	shouldLoadChart: false,
 
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
 		return results;
 	}),
 	chartOptions: {
-		title: 'Percent Probability of Authentic User (Last 24 Hours)',
+		title: 'Percent Probability of Authentic User',
 		height: 480,
 		legend: {
 			position: 'none'
