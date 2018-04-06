@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     recordsPerPage: 50,
 
     sortingKey: ['timestamp:desc'],
-    sortingKeyServer: '-timestamp',
+    sortingKeyServer: "{'timestamp' : -1}",
     filteredSortedActivities: Ember.computed.sort('filteredActivities', 'sortingKey'),
 
     didReceiveAttrs() {
