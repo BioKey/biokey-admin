@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 
 	init() {
 		this._super(...arguments);
-		this._poll(10000);
+		/// this._poll(10000);
 	},
 
 	_poll(interval) {

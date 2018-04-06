@@ -27,7 +27,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.host = 'http://18.219.182.1:3000';
   }
-  console.log(process.env.API_URL);
+
   ENV.host = process.env.API_URL || ENV.host;
 
   if (environment === 'development') {

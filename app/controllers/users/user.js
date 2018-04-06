@@ -5,8 +5,8 @@ export default Ember.Controller.extend({
     delete() {
       this.transitionToRoute('users');
     },
-    refreshProfiles() {
-		return this.get('store').findAll('typing-profile');
-	}
+    refreshProfiles(userId) {
+		  return this.get('store').query('typing-profile', {user: userId});
+	  }
   }
 });
